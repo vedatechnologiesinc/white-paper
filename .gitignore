@@ -894,7 +894,6 @@ TSWLatexianTemp*
 
 .DS_Store
 
-*.pdf
 *.html
 
 *.bbl
