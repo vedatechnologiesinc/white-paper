@@ -680,7 +680,8 @@ hive, they behave rather simplistically. However, with a rabble, they are able
 to form a collective consciousness---a hive mind.
 
 #+LATEX: \hfill\break
-/Thanks to Kamil Shakirov, Chris Petersen, and Carlo Poblete for reviewing the draft of this
-whitepaper./
+/Thanks to Kamil Shakirov, Chris Petersen, and Carlo Poblete for reviewing the
+draft of this whitepaper. Special thanks to Xavier Bethune\textdagger{} and
+Robert Pineda for funding this research./
 
 #+LATEX: \printbibliography[title={Bibliography}]

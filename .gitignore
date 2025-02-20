@@ -896,3 +896,7 @@ TSWLatexianTemp*
 
 *.pdf
 *.html
+
+*.bbl
+*.tex
+*blx.bib
