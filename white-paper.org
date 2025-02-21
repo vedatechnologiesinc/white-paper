@@ -511,10 +511,10 @@ them, as shown in figure, [[fig:reflexformula]].
 
 The complex formula includes a ~label~ and a ~primary value~. Within the primary
 value, it can contain an empty or non-empty formula. This empty formula can be
-expanded using the symbols ~@~ or ~#~. The @ symbol represents an exit string
-for the label or includes metadata, while the # symbol initiates the full
-expansion of the empty formula, turning it into its complete composition. It
-must be placed before the formula begins.As shown in figure, [[fig:complex-formula]].
+expanded using the symbols ~@~ or ~#~. The ~@~ symbol represents an exit string
+for the label or includes metadata. The ~#~ symbol initiates the full expansion
+of the empty formula, turning it into its complete composition. It must be placed
+before the formula begins.As shown in figure, [[fig:complex-formula]].
 
 #+CAPTION: Complex formula
 #+NAME: fig:complex-formula
