@@ -478,115 +478,107 @@ network of interrelated volume groupings.
 #+ATTR_HTML: :width 80%
 [[./images/volumes-07.png]]
 
-* Capsules
+* Formula
 
-# What is the invention?
-Capsules are storage mechanisms that allow one to manage nested encapsulated
-key-value information.  With capsules, it is possible to create trees of
-relationships whilst preserving value context. When a parent or a child capsule
-changes property or value, the change becomes reflected in the whole subtree.
-The idea of capsules were inspired by earlier work on Mimix Stream Language
-(MSL) [cite:@bethune20].
+A formula serves as the atomic building blocks of input data within the system.
+In technical nomenclature, it can be referenced as an expression or declaration
+Formulae are categorized into three primary classifications: /basic formula/,
+/reflexive formula/ and /complex formula/. It is a high-level language with
+textual representation adheres to an s-expressions.
 
-Each capsule can contain arbitrary data, including the value of another capsule, allowing for
-nesting of capsules. Information that is contained in capsules is retrieved in the order that they
-were defined. In Figure [[fig:capsules-01]], the capsules /first/ and /last/ are bound to ~John~ and
-~Smith~, respectively. The capsule /alt/ is bound to ~Big~ and the value of the capsule /first/,
-which is ~John~. Similarly, the capsule /name/ is bound to the aggregate values of the capsules
-/first/ and /last/.
+The basic formula must be enclosed in parentheses and begins with a label (which
+starts with a colon and followed by letters or numbers), followed by whitespace
+and a primary value contained within brackets that can include alphanumeric
+characters. After another whitespace, there can be optional metadata which
+starts with a colon, includes a metadata name containing numbers or letters,
+and has a value that can be either alphanumeric characters or nested formulae.
+As shown in figure, [[fig:formula-01]].
 
-#+CAPTION: Basic and extended capsules
-#+NAME: fig:capsules-01
+#+CAPTION: Basic formula
+#+NAME: fig:formula-01
 #+ATTR_HTML: :width 80%
-[[./images/capsules-01.png]]
+[[./images/basic-formula.png]]
 
-Sub-capsules on the other hand, are like capsules, but they can only live inside
-proper capsules.  They allow data embedding, while providing a limited form of
-information hiding.
+The reflexive formula establishes a relationship between Label A and Label B
+where each label refers to the other. Both labels can hold distinct values, and
+to facilitate mutual referencing, metadata serves as the mechanism that links
+them, as shown in figure, [[fig:reflexformula]].
 
-#+CAPTION: Sub-capsules
-#+NAME: fig:capsules-02
+#+CAPTION: Reflexive Formula
+#+NAME: fig:reflexiveformula
 #+ATTR_HTML: :width 80%
-[[./images/capsules-02.png]]
+[[./images/reflexive.png]]
 
-Constants allow bindings to a capsule that prevent new value bindings but allow
-for overlays on those constants to exist. Overlays provide a shadowing mechanism
-to constants within the environments where those constants exist. In Figure
-[[fig:capsules-03]], a constant is created on top-level binding the value ~John~ to
-the capsule /first/. Then, an overlay is made to temporarily bind a new value to
-the capsule /first/ inside another environment. In that environment the value of
-the capsule /first/ is ~Peter~. However, outside of that overlay environment,
-the capsule /name/ is still bound to the original value of ~John~ when the
-constant was first created.
+The complex formula includes a ~label~ and a ~primary value~. Within the primary
+value, it can contain an empty or non-empty formula. This empty formula can be
+expanded using the symbols ~@~ or ~#~. The @ symbol represents an exit string
+for the label or includes metadata, while the # symbol initiates the full
+expansion of the empty formula, turning it into its complete composition. It
+must be placed before the formula begins.As shown in figure, [[fig:complex-formula]].
 
-#+CAPTION: Constants and overlays
-#+NAME: fig:capsules-03
+#+CAPTION: Complex formula
+#+NAME: fig:complex-formula
 #+ATTR_HTML: :width 80%
-[[./images/capsules-03.png]]
+[[./images/complex-formula.png]]
 
-# TODO: rollbacks
-# TODO: serial operations from left to right
+The following formulae correspond to and demonstrate the structures illustrated
+in figures [[fig:formula-01]], [[fig:reflexiveformula]], and [[fig:complex-formula]]
+respectively.
 
-A mini-language has been designed to support the direct manipulation of the
-capsules--/declarations/. Declarations are user-level mechanisms to interact
-with the capsule system. It is a high-level language that has a similar syntax
-to s-expressions. A declaration can either retrieve a capsule value, set it to a
-new one, or overwrite the value of an existing one. At the most basic level,
-declarations are composed of /terms/, /sub-terms/, and /constant terms/. Terms,
-sub-terms, and constant terms correspond to capsules, sub-capsules, and
-constants in the object universe.
-
-Terms are the basic building blocks of declarations. They can either be textual
-information or binary blobs. Sub-terms are terms that are inside terms. Constant
-terms, on other hand, are terms that do not change value inside a scope. When a
-new value is bound to a constant, inside another existing constant, the new,
-temporary value becomes the active one. When the new constant leaves the scope,
-the original value becomes visible again.
-
-The declarations that correspond to Figures [[fig:capsules-01]], [[fig:capsules-02]],
-and [[fig:capsules-03]] are as follows:
-
-#+CAPTION: Basic terms
-#+NAME: lst:basicterms
+#+CAPTION: Basic formula
+#+NAME: lst:basicformula
 
 #+BEGIN_SRC
-($first John)
-($last Smith)
-($alt Big ($first))
-($name ($first) ($last))
-($alt)             => "Big John"
-($name)            => "John Smith"
+(:galileo [Galileo Galilei] :occupation [philosopher])
+(:galileo)               => [Galileo Galilei]
+(:galileo :occupation)   => [philosopher]
+@(:galileo)              => Galileo Galilei
+@(:galileo :occupation)  => philosopher
 #+END_SRC
 
-#+CAPTION: Basic sub-terms
-#+NAME: lst:basicsubterms
+#+CAPTION: Reflexive formula
+#+NAME: lst:reflexiveformula
 
 #+BEGIN_SRC
-($first John)
-($last Smith)
-($name ($first) ($last) :age 100)
-($city Austin)
-($name :address ($city))
-($name :age)      => "100"
-($name :address)  => "Austin"
-($name)           => "John Smith"
+(:galileo [Galileo Galilei])
+(:vincenzo [Vincenzo Galilei])
+(:galileo :father (:vincenzo))    => [Vincenzo Galilei]
+(:vincenzo :son (:galileo))       => [Galileo Galilei]
+(:galileo [Great Galileo Galilei])
+(:vincenzo [Amazing Vincenzo Galilei])
+(:vincenzo :son (:galileo))       => [Great Galileo Galilei]
+(:galileo :father (:vincenzo))    => [Amazing Vincenzo Galilei]
+@(:galileo) => Great Galileo Galilei
+@(:vincenzo)=> Amazing Vincenzo Galilei
 #+END_SRC
 
-#+CAPTION: Constant terms and overlays
-#+NAME: lst:constantsoverlays
+#+CAPTION: Complex formula
+#+NAME: lst:complexformula
 
 #+BEGIN_SRC
-(%c ($first John)
-    ($name ($first)))     => "John"
-(~o ($first Peter)
-    ($name ($first)))     => "Peter"
-($name)                   => "John"
+(:occupation [philosopher])
+(:galileo [Galileo Galilei (:occupation)] :age [1005] :period [reinassance])
+
+(:galileo)                                  => [Galileo Galilei [philosopher]]
+(:galileo [Galileo Galilei #(:occupation)]) => (:galileo [Galileo Galilei (:occupation [philosopher])])
+(:galileo [Galileo Galilei (:occupation)])  => (:galileo [Galileo Galilei [philosopher]])
+#(:galileo) => (:galileo [Galileo Galilei (:occupation [philosopher])] :age [1005] :period [reinassance])
+@(:galileo) => Galileo Galilei philosopher
 #+END_SRC
 
-Term names are not case-sensitive, so ~($first John)~ are equivalent to
-~($FIRST John)~ and ~($FiRsT John)~. Term values are implicitly quoted.
-Accumulation of information happens serially across time. All changes to a
-declaration are captured. This feature enables arbitrary rollbacks.
+Label names are not case-sensitive, so =(:galileo [Galileo Galilei])= are
+equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
+Accumulation of information happens serially across time, all changes to a
+formula are captured. This features enables arbitrary rollbacks.
+
+When evaluating a valid formula that doesn’t contain the ~@~ or ~#~ symbols,
+the formula is returned exactly as it is, unchanged.
+
+It has the capability to track changes linearly across time, allowing value
+capture and progressive additions without compromising historical integrity.
+This linear tracking allows the system to maintain the record of all modifications
+that enables arbitrary rollbacks.
+
 
 * Implementation
 
