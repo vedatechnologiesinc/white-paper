@@ -571,9 +571,6 @@ equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
 Accumulation of information happens serially across time, all changes to a
 formula are captured. This features enables arbitrary rollbacks.
 
-When evaluating a valid formula that doesn’t contain the ~@~ or ~#~ symbols,
-the formula is returned exactly as it is, unchanged.
-
 * Implementation
 
 # Introduction
