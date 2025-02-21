@@ -566,7 +566,7 @@ respectively.
 @(:galileo) => Galileo Galilei philosopher
 #+END_SRC
 
-Label names are not case-sensitive, so =(:galileo [Galileo Galilei])= are
+Label names are not case-sensitiv. Thus, =(:galileo [Galileo Galilei])= are
 equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
 Accumulation of information happens serially across time, all changes to a
 formula are captured. This features enables arbitrary rollbacks.
