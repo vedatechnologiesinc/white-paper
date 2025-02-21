@@ -574,12 +574,6 @@ formula are captured. This features enables arbitrary rollbacks.
 When evaluating a valid formula that doesn’t contain the ~@~ or ~#~ symbols,
 the formula is returned exactly as it is, unchanged.
 
-It has the capability to track changes linearly across time, allowing value
-capture and progressive additions without compromising historical integrity.
-This linear tracking allows the system to maintain the record of all modifications
-that enables arbitrary rollbacks.
-
-
 * Implementation
 
 # Introduction
