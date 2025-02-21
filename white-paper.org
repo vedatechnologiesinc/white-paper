@@ -489,7 +489,7 @@ textual representation adheres to an s-expressions.
 The basic formula must be enclosed in parentheses and begins with a label (which
 starts with a colon and followed by letters or numbers), followed by whitespace
 and a primary value contained within brackets that can include alphanumeric
-characters. After another whitespace, there can be optional metadata which
+characters. After another whitespace, there can be an optional metadata which
 starts with a colon, includes a metadata name containing numbers or letters,
 and has a value that can be either alphanumeric characters or nested formulae.
 As shown in figure, [[fig:formula-01]].
