@@ -548,8 +548,8 @@ respectively.
 (:vincenzo [Amazing Vincenzo Galilei])
 (:vincenzo :son (:galileo))       => [Great Galileo Galilei]
 (:galileo :father (:vincenzo))    => [Amazing Vincenzo Galilei]
-@(:galileo) => Great Galileo Galilei
-@(:vincenzo)=> Amazing Vincenzo Galilei
+@(:galileo)                       => Great Galileo Galilei
+@(:vincenzo)                      => Amazing Vincenzo Galilei
 #+END_SRC
 
 #+CAPTION: Complex formula
