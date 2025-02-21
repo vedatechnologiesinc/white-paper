@@ -502,7 +502,7 @@ As shown in figure, [[fig:formula-01]].
 The reflexive formula establishes a relationship between ~Label A~ and ~Label B~
 where each label refers to the other. Both labels can hold distinct values, and
 to facilitate mutual referencing, metadata serves as the mechanism that links
-them, as shown in figure, [[fig:reflexformula]].
+them. As shown in figure, [[fig:reflexformula]].
 
 #+CAPTION: Reflexive Formula
 #+NAME: fig:reflexiveformula
@@ -514,7 +514,7 @@ value, it can contain an empty or non-empty formula. This empty formula can be
 expanded using the symbols ~@~ or ~#~. The ~@~ symbol represents an exit string
 for the label or includes metadata. The ~#~ symbol initiates the full expansion
 of the empty formula, turning it into its complete composition. It must be placed
-before the formula begins.As shown in figure, [[fig:complex-formula]].
+before the formula begins. As shown in figure, [[fig:complex-formula]].
 
 #+CAPTION: Complex formula
 #+NAME: fig:complex-formula
