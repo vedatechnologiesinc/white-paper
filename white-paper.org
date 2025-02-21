@@ -481,7 +481,7 @@ network of interrelated volume groupings.
 * Formula
 
 A formula serves as the atomic building blocks of input data within the system.
-In technical nomenclature, it can be referenced as an expression or declaration
+In technical nomenclature, it can be referenced as an expression or declaration.
 Formulae are categorized into three primary classifications: /basic formula/,
 /reflexive formula/ and /complex formula/. It is a high-level language with
 textual representation adheres to an s-expressions.
