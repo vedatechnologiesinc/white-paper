@@ -499,7 +499,7 @@ As shown in figure, [[fig:formula-01]].
 #+ATTR_HTML: :width 80%
 [[./images/basic-formula.png]]
 
-The reflexive formula establishes a relationship between Label A and Label B
+The reflexive formula establishes a relationship between ~Label A~ and ~Label B~
 where each label refers to the other. Both labels can hold distinct values, and
 to facilitate mutual referencing, metadata serves as the mechanism that links
 them, as shown in figure, [[fig:reflexformula]].
