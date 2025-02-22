@@ -13,17 +13,11 @@
 #+latex_class: article
 #+latex_class_options: [a4paper,10pt,twocolumn]
 
-#+latex_header: \usepackage[english]{babel}
-#+latex_header: \usepackage{microtype}
 #+latex_header: \usepackage[hang, small, labelfont=bf, up, textfont=it]{caption}
 #+latex_header: \usepackage{lastpage}
 #+latex_header: \usepackage{inconsolata}
 #+latex_header: \usepackage[hidelinks]{hyperref}
-
 #+latex_header: \usepackage{fontspec}
-#+latex_header: \setmainfont{Poppins}
-#+latex_header: \setsansfont{Poppins}
-
 #+latex_header: \usepackage{enumitem}
 #+latex_header: \setlist{noitemsep}
 #+latex_header: \usepackage{sectsty}
@@ -423,7 +417,7 @@ volume.  This is the /container/ property of volumes.
 #+CAPTION: Basic volume structure
 #+NAME: fig:volumes-01
 #+ATTR_HTML: :width 80%
-[[./images/volumes-01.png]]
+- [[./images/volumes-01.png]]
 
 Volumes can be disassembled and reassembled in different configurations
 including, but not limited to: /frame burying/---the ability to temporarily make
@@ -688,8 +682,6 @@ hive, they behave rather simplistically. However, with a rabble, they are able
 to form a collective consciousness---a hive mind.
 
 #+LATEX: \hfill\break
-/Thanks to Kamil Shakirov, Chris Petersen, and Carlo Poblete for reviewing the
-draft of this whitepaper. Special thanks to Xavier Bethune\textdagger{} and
-Robert Pineda for funding this research./
+/Thanks to Kamil Shakirov, Chris Petersen, and Carlo Poblete for reviewing the draft of this whitepaper. Special thanks to Xavier Bethune\textdagger{} and Robert Pineda for funding this research./
 
 #+LATEX: \printbibliography[title={Bibliography}]
