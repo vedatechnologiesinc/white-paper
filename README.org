@@ -5,11 +5,11 @@ This repository contains the Org sources for the white paper.
 * Exporting
 To export the Org file to PDF, run:
 
-=M-x org-latex-export-to-pdf RET=
+=M-x org-pandoc-export-as-latex RET=
 
 To export the Org file to HTML, run:
 
-=M-x org-html-export-to-html RET=
+=M-x org-pandoc-export-as-html5 RET=
 
 * Final TeX file cleanups
 
