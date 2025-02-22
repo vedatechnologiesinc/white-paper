@@ -18,6 +18,7 @@
 #+latex_header: \usepackage[hang, small, labelfont=bf, up, textfont=it]{caption}
 #+latex_header: \usepackage{lastpage}
 #+latex_header: \usepackage{inconsolata}
+#+latex_header: \usepackage[hidelinks]{hyperref}
 
 #+latex_header: \usepackage{fontspec}
 #+latex_header: \setmainfont{Poppins}
@@ -497,43 +498,44 @@ and a primary value contained within brackets that can include alphanumeric
 characters. After another whitespace, there can be an optional metadata which
 starts with a colon, includes a metadata name containing numbers or letters,
 and has a value that can be either alphanumeric characters or nested formulae.
-As shown in figure, [[fig:formula-01]].
+As shown in the Backus-Naur form text below,
 
-#+CAPTION: Basic formula
-#+NAME: fig:formula-01
-#+ATTR_LATEX: :width 8.5cm :height 4cm
-[[./images/basic-formula.png]]
+#+begin_src
+basic-formula ::= '(' label newline
+                      primary-value newline
+                      metadata? ')'
+#+end_src
 
 The reflexive formula establishes a relationship between ~Label A~ and ~Label B~
 where each label refers to the other. Both labels can hold distinct values, and
 to facilitate mutual referencing, metadata serves as the mechanism that links
-them. As shown in figure, [[fig:reflexiveformula]].
+them. As shown in the Backus-Naur form  text below,
 
-#+CAPTION: Reflexive Formula
-#+NAME: fig:reflexiveformula
-#+ATTR_HTML: :width 100%
-[[./images/reflexive.png]]
+#+begin_src
+formula1 ::= '(' label1 newline
+                 primary-value1 ')'
+formula2 ::= '(' label2 newline
+                 primary-value2 ')'
+formula3 ::= '(' label1 metadata label2 ')'
+#+end_src
 
 The complex formula includes a ~label~ and a ~primary value~. Within the primary
 value, it can contain an empty or non-empty formula. This empty formula can be
 expanded using the symbols ~@~ or ~#~. The ~@~ symbol represents an exit string
 for the label or includes metadata. The ~#~ symbol initiates the full expansion
 of the empty formula, turning it into its complete composition. It must be placed
-before the formula begins. As shown in figure, [[fig:complex-formula]].
+before the formula begins. As shown in the Backus-Naur form below,
 
-#+CAPTION: Complex formula
-#+NAME: fig:complex-formula
-#+ATTR_LATEX: :width 8cm :height 3cm
-[[./images/complex-formula.png]]
+#+begin_src Mi vizitos mian avinon ĉe ŝia domo. Ŝi mesaĝis al mi, ke ŝi ne povas marŝi.
+complex-formula ::= '(' label newline
+  '[' primary-value expansion-key? decl ']'
+      metadata ')'
+#+end_src
 
-The following formulae correspond to and demonstrate the structures illustrated
-in figures [[fig:formula-01]], [[fig:reflexiveformula]], and [[fig:complex-formula]]
-respectively.
+The following formulae correspond to and demonstrate the structures from the Backus-Naur form text above respectively,
 
-#+CAPTION: Basic formula
-#+NAME: lst:basicformula
-
-#+BEGIN_SRC
+***** Basic formula
+#+BEGIN_SRC lisp
 (:galileo [Galileo Galilei]
           :occupation [philosopher])
 (:galileo)
@@ -546,10 +548,8 @@ respectively.
 => philosopher
 #+END_SRC
 
-#+CAPTION: Reflexive formula
-#+NAME: lst:reflexiveformula
-
-#+BEGIN_SRC
+***** Reflexive formula
+#+BEGIN_SRC lisp
 (:galileo [Galileo Galilei])
 (:vincenzo [Vincenzo Galilei])
 (:galileo :father (:vincenzo))
@@ -568,31 +568,28 @@ respectively.
 => Amazing Vincenzo Galilei
 #+END_SRC
 
-#+CAPTION: Complex formula
-#+NAME: lst:complexformula
-
-#+BEGIN_SRC
+***** Complex formula
+#+begin_src lisp
 (:occupation [philosopher])
 (:galileo [Galileo Galilei
           (:occupation)]
           :age [1005]
           :period [reinassance])
-
 (:galileo)
 => [Galileo Galilei [philosopher]]
 (:galileo [Galileo Galilei #(:occupation)])
 => (:galileo [Galileo Galilei
              (:occupation [philosopher])])
-(:galileo [Galileo Galilei (:occupation)])
+(:galileo [Galileo Galilei @(:occupation)])
 => (:galileo [Galileo Galilei [philosopher]])
 #(:galileo)
 => (:galileo [Galileo Galilei
-        (:occupation [philosopher])]
-        :age [1005]
-        :period [reinassance])
+             (:occupation [philosopher])]
+             :age [1005]
+             :period [reinassance])
 @(:galileo)
 => Galileo Galilei philosopher
-#+END_SRC
+#+end_src
 
 Label names are not case-sensitive. Thus, =(:galileo [Galileo Galilei])= are
 equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
