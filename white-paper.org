@@ -14,14 +14,17 @@
 #+latex_class_options: [a4paper,10pt,twocolumn]
 
 #+latex_header: \usepackage[english]{babel}
-#+latex_header: \usepackage{fontspec}\setmonofont[SizeFeatures={Size=9}]{BQN386}
 #+latex_header: \usepackage{microtype}
 #+latex_header: \usepackage[hang, small, labelfont=bf, up, textfont=it]{caption}
 #+latex_header: \usepackage{lastpage}
+#+latex_header: \usepackage{inconsolata}
+
+#+latex_header: \usepackage{fontspec}
+#+latex_header: \setmainfont{Poppins}
+#+latex_header: \setsansfont{Poppins}
 
 #+latex_header: \usepackage{enumitem}
 #+latex_header: \setlist{noitemsep}
-
 #+latex_header: \usepackage{sectsty}
 #+latex_header: \allsectionsfont{\usefont{OT1}{phv}{b}{n}}
 
@@ -416,7 +419,9 @@ while a unit is a frame that doesn't contain a value. A ``value'' in this sense
 means any kind of data, a pointer to another frame, or a pointer to another
 volume.  This is the /container/ property of volumes.
 
-#+CAPTION: Basic volume structure #+NAME: fig:volumes-01 #+ATTR_HTML: :width 80%
+#+CAPTION: Basic volume structure
+#+NAME: fig:volumes-01
+#+ATTR_HTML: :width 80%
 [[./images/volumes-01.png]]
 
 Volumes can be disassembled and reassembled in different configurations
@@ -496,17 +501,17 @@ As shown in figure, [[fig:formula-01]].
 
 #+CAPTION: Basic formula
 #+NAME: fig:formula-01
-#+ATTR_HTML: :width 80%
+#+ATTR_LATEX: :width 8.5cm :height 4cm
 [[./images/basic-formula.png]]
 
 The reflexive formula establishes a relationship between ~Label A~ and ~Label B~
 where each label refers to the other. Both labels can hold distinct values, and
 to facilitate mutual referencing, metadata serves as the mechanism that links
-them. As shown in figure, [[fig:reflexformula]].
+them. As shown in figure, [[fig:reflexiveformula]].
 
 #+CAPTION: Reflexive Formula
 #+NAME: fig:reflexiveformula
-#+ATTR_HTML: :width 80%
+#+ATTR_HTML: :width 100%
 [[./images/reflexive.png]]
 
 The complex formula includes a ~label~ and a ~primary value~. Within the primary
@@ -518,7 +523,7 @@ before the formula begins. As shown in figure, [[fig:complex-formula]].
 
 #+CAPTION: Complex formula
 #+NAME: fig:complex-formula
-#+ATTR_HTML: :width 80%
+#+ATTR_LATEX: :width 8cm :height 3cm
 [[./images/complex-formula.png]]
 
 The following formulae correspond to and demonstrate the structures illustrated
@@ -529,11 +534,16 @@ respectively.
 #+NAME: lst:basicformula
 
 #+BEGIN_SRC
-(:galileo [Galileo Galilei] :occupation [philosopher])
-(:galileo)               => [Galileo Galilei]
-(:galileo :occupation)   => [philosopher]
-@(:galileo)              => Galileo Galilei
-@(:galileo :occupation)  => philosopher
+(:galileo [Galileo Galilei]
+          :occupation [philosopher])
+(:galileo)
+=> [Galileo Galilei]
+(:galileo :occupation)
+=> [philosopher]
+@(:galileo)
+=> Galileo Galilei
+@(:galileo :occupation)
+=> philosopher
 #+END_SRC
 
 #+CAPTION: Reflexive formula
@@ -542,14 +552,20 @@ respectively.
 #+BEGIN_SRC
 (:galileo [Galileo Galilei])
 (:vincenzo [Vincenzo Galilei])
-(:galileo :father (:vincenzo))    => [Vincenzo Galilei]
-(:vincenzo :son (:galileo))       => [Galileo Galilei]
+(:galileo :father (:vincenzo))
+=> [Vincenzo Galilei]
+(:vincenzo :son (:galileo))
+=> [Galileo Galilei]
 (:galileo [Great Galileo Galilei])
 (:vincenzo [Amazing Vincenzo Galilei])
-(:vincenzo :son (:galileo))       => [Great Galileo Galilei]
-(:galileo :father (:vincenzo))    => [Amazing Vincenzo Galilei]
-@(:galileo)                       => Great Galileo Galilei
-@(:vincenzo)                      => Amazing Vincenzo Galilei
+(:vincenzo :son (:galileo))
+=> [Great Galileo Galilei]
+(:galileo :father (:vincenzo))
+=> [Amazing Vincenzo Galilei]
+@(:galileo)
+=> Great Galileo Galilei
+@(:vincenzo)
+=> Amazing Vincenzo Galilei
 #+END_SRC
 
 #+CAPTION: Complex formula
@@ -557,16 +573,28 @@ respectively.
 
 #+BEGIN_SRC
 (:occupation [philosopher])
-(:galileo [Galileo Galilei (:occupation)] :age [1005] :period [reinassance])
+(:galileo [Galileo Galilei
+          (:occupation)]
+          :age [1005]
+          :period [reinassance])
 
-(:galileo)                                  => [Galileo Galilei [philosopher]]
-(:galileo [Galileo Galilei #(:occupation)]) => (:galileo [Galileo Galilei (:occupation [philosopher])])
-(:galileo [Galileo Galilei (:occupation)])  => (:galileo [Galileo Galilei [philosopher]])
-#(:galileo) => (:galileo [Galileo Galilei (:occupation [philosopher])] :age [1005] :period [reinassance])
-@(:galileo) => Galileo Galilei philosopher
+(:galileo)
+=> [Galileo Galilei [philosopher]]
+(:galileo [Galileo Galilei #(:occupation)])
+=> (:galileo [Galileo Galilei
+             (:occupation [philosopher])])
+(:galileo [Galileo Galilei (:occupation)])
+=> (:galileo [Galileo Galilei [philosopher]])
+#(:galileo)
+=> (:galileo [Galileo Galilei
+        (:occupation [philosopher])]
+        :age [1005]
+        :period [reinassance])
+@(:galileo)
+=> Galileo Galilei philosopher
 #+END_SRC
 
-Label names are not case-sensitiv. Thus, =(:galileo [Galileo Galilei])= are
+Label names are not case-sensitive. Thus, =(:galileo [Galileo Galilei])= are
 equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
 Accumulation of information happens serially across time, all changes to a
 formula are captured. This features enables arbitrary rollbacks.
