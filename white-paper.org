@@ -536,7 +536,8 @@ The following formulae correspond to and demonstrate the structures from the Bac
 
 ***** Basic formula
 #+BEGIN_SRC
-(:galileo [Galileo Galilei] :occupation [philosopher])
+(:galileo [Galileo Galilei]
+          :occupation [philosopher])
 (:galileo)
 => [Galileo Galilei]
 (:galileo :occupation)
