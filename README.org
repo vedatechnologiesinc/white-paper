@@ -1,4 +1,9 @@
 #+TITLE: white-paper
+* Table of contents :toc:
+- [[#overview][Overview]]
+- [[#exporting][Exporting]]
+- [[#final-tex-file-cleanups][Final TeX file cleanups]]
+
 * Overview
 This repository contains the Org sources for the white paper.
 
