@@ -11,7 +11,7 @@ This repository contains the Org source files for the white paper.
 
 * Build
 ** Vix
-To generate the PDF from Org using make inside a development shell, run the following command:
+To generate the PDF from Org using =make= inside a development shell, run the following command:
 #+begin_src
 vix m
 #+end_src
