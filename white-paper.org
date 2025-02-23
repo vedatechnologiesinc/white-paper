@@ -407,6 +407,11 @@ computations, analysis, and discovery, in a way that was not easy to do before.
 With volumes come the concepts of /frames/, /pools/, /units/, and /cells/.
 Together they make up microcosms within /registries/ and /universes/.
 
+#+CAPTION: Time traversal and registries layers
+#+NAME: fig:1
+#+ATTR_HTML: :width 100%
+[[./images/1.png]]
+
 Volumes are represented as semi-contiguous connections of frames, which could
 either be pools or units. A frame is a container and pointer that contains
 navigational information in a volume. A pool is a frame that contains a value,
@@ -417,7 +422,7 @@ volume.  This is the /container/ property of volumes.
 #+CAPTION: Basic volume structure
 #+NAME: fig:volumes-01
 #+ATTR_HTML: :width 80%
-- [[./images/volumes-01.png]]
+[[./images/volumes-01.png]]
 
 Volumes can be disassembled and reassembled in different configurations
 including, but not limited to: /frame burying/---the ability to temporarily make
@@ -442,17 +447,23 @@ make sure that they do not clash with the existence of volumes in the universe.
 types of volumes together. This gives the ability of volumes to share properties
 allowing for operations like matching, searching, and lateral indexing.
 
+#+CAPTION: Heteregenous information banks
+#+NAME: fig:4
+#+ATTR_HTML: :width 100%
+[[./images/2.png]]
+
 #+CAPTION: Horizontal volume binding
-#+NAME: fig:volumes-04
+#+NAME: fig:volumes-05
 #+ATTR_HTML: :width 80%
 [[./images/volumes-04.png]]
+
 
 /Vertical volume binding/---the ability to bind volumes together by linking the
 heads and tails of different volumes. This gives the ability to extend existing
 properties and give more context to existing information.
 
 #+CAPTION: Vertical volume binding
-#+NAME: fig:volumes-05
+#+NAME: fig:volumes-07
 #+ATTR_HTML: :width 80%
 [[./images/volumes-05.png]]
 
@@ -461,7 +472,7 @@ arbitrary-sized frame groups; and /volume wrapping/-- the ability to create a
 globe of volumes, creating a monolithic volume group.
 
 #+CAPTION: Volume destructuring
-#+NAME: fig:volumes-06
+#+NAME: fig:volumes-08
 #+ATTR_HTML: :width 80%
 [[./images/volumes-06.png]]
 
@@ -474,9 +485,21 @@ contain specific traits and qualities. Using volume blocks, we can create a
 network of interrelated volume groupings.
 
 #+CAPTION: Interconnected volume blocks
-#+NAME: fig:volumes-07
+#+NAME: fig:volumes-09
 #+ATTR_HTML: :width 80%
 [[./images/volumes-07.png]]
+
+#+CAPTION: Symmetrical binding
+#+NAME: fig:6
+#+ATTR_HTML: :width 100%
+[[./images/3.png]]
+
+#+CAPTION: 3D/4D view of information banks
+#+NAME: fig:10
+#+ATTR_HTML: :width 100%
+[[./images/4.png]]
+
+
 
 * Formula
 
