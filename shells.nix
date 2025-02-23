@@ -3,7 +3,8 @@ with pkgs;
 rec {
   shell = mkShell {
     buildInputs = [
-      pandoc
+      emacs
+      texlive.combined.scheme-full
     ];
   };
   default = shell;

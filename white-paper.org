@@ -520,7 +520,7 @@ for the label or includes metadata. The ~#~ symbol initiates the full expansion
 of the empty formula, turning it into its complete composition. It must be placed
 before the formula begins. As shown in the Backus-Naur form below,
 
-#+begin_src Mi vizitos mian avinon ĉe ŝia domo. Ŝi mesaĝis al mi, ke ŝi ne povas marŝi.
+#+begin_src
 complex-formula ::= '(' label newline
   '[' primary-value expansion-key? decl ']'
       metadata ')'
