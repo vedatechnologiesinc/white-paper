@@ -4,7 +4,7 @@ rec {
   shell = mkShell {
     buildInputs = [
       pandoc
-      texlive.combined
+      texlive.combined.scheme-full
     ];
   };
   default = shell;
