@@ -1,13 +1,13 @@
 #———————————————————————————————————————————————————————————————————————————————
 # HEAD
 MAIN = white-paper
+TEXSRC = $(MAIN).tex
+ORGSRC = $(MAIN).org
 BIB = references.bib
 SED = sed
 LATEX = xelatex
 BIBTEX = bibtex
 EMACS = emacs
-TEXSRC = $(MAIN).tex
-ORGSRC = $(MAIN).org
 MINTED=_minted
 LATEXFLAGS = -interaction=nonstopmode -shell-escape
 
