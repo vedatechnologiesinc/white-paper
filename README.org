@@ -1,50 +1,32 @@
-#+TITLE: white-paper
-* Table of contents :toc:
+#+TITLE: White Paper
+
+* Table of Contents :toc:
 - [[#overview][Overview]]
-- [[#exporting][Exporting]]
-- [[#final-tex-file-cleanups][Final TeX file cleanups]]
+- [[#build][Build]]
+  - [[#vix][Vix]]
+  - [[#without-vix][Without Vix]]
 
 * Overview
-This repository contains the Org sources for the white paper.
+This repository contains the Org source files for the white paper.
 
-* Exporting
-To export the Org file to PDF, run:
+* Build
+** Vix
+To generate the PDF from Org, run the following command:
+#+begin_src
+vix m
+#+end_src
+To remove all build files, use:
+#+begin_src
+vix m cleanall
+#+end_src
 
-=M-x org-latex-export-to-pdf RET=
-
-To export the Org file to HTML, run:
-
-=M-x org-html-export-to-html RET=
-
-* Final TeX file cleanups
-
-To make it possible to build a correct PDF file without errors from a command line, a few cleanups
-need to be applied to the generated ~white-paper.tex~ file:
-
-Delete the redundant reference to the bibliography, e.g.:
-
-=\addbibresource{/Users/ebzzry/Documents/white-paper/references.bib}=
-
-Edit the ~pdfcreator~ property to remove invalid syntax:
-
-e.g., before:
-
-=pdfauthor={Rommel Martínez \url{mailto:ebzzry@icloud.com} \\\medskip \url{https://ebzzry.com}},=
-
-after:
-
-=pdfauthor={Rommel Martínez},=
-
-Edit the ~abstract~ section, down-casing the ~ABSTRACT~ word:
-
-e.g., before:
-
-=\begin{ABSTRACT}=
-=\end{ABSTRACT}=
-
-after:
-
-=\begin{abstract}=
-=\end{abstract}=
-
-*TODO:* This process should be automated via scripting
+** Without Vix
+To build the PDF using an alternative method, execute:
+#+begin_src
+make
+#+end_src
+To clean up the build, run:
+#+begin_src
+make cleanall
+#+end_src
+This process has already been automated to handle both cleanups and PDF generation from Org using LaTeX.
