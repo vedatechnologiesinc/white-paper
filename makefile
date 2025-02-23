@@ -13,7 +13,32 @@ LATEXFLAGS = -interaction=nonstopmode -shell-escape
 
 #———————————————————————————————————————————————————————————————————————————————
 # BODY
-.PHONY: all cleanall clean org-to-tex
+.PHONY: all cleanall clean org-to-tex clean-tex
+
+all: $(MAIN).pdf
+
+$(MAIN).pdf: clean-tex
+	@echo "First init"
+	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
+	@echo "Running BibTeX"
+	@if [ -f $(BIB) ]; then \
+		$(BIBTEX) $(MAIN) || true; \
+	fi
+	@echo "Second init"
+	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
+	@if [ -f $(MAIN).pdf ]; then \
+		echo "Success: PDF file has been created."; \
+		rm -f $(MAIN).aux $(MAIN).log $(MAIN).bbl $(MAIN)-blx.bib \
+			  $(MAIN).blg $(MAIN).out $(MAIN).bcf $(MAIN).run.xml; \
+	fi
+
+clean-tex: org-to-tex
+	@echo "Fixing Final TeX file cleanups"
+	@echo "Delete the redundant reference to the bibliography..."
+	@$(SED) -i '/\\addbibresource{.*\/references.bib}/d' $(TEXSRC)
+	@echo "Down-casing the ABSTRACT word..."
+	@$(SED) -i 's/\\begin{ABSTRACT}/\\begin{abstract}/g' $(TEXSRC)
+	@$(SED) -i 's/\\end{ABSTRACT}/\\end{abstract}/g' $(TEXSRC)
 
 org-to-tex: $(ORGSRC)
 	@echo "Converting $(ORGSRC) to $(TEXSRC)..."
@@ -25,39 +50,11 @@ org-to-tex: $(ORGSRC)
 		--eval "(with-current-buffer (find-file \"$(ORGSRC)\") \
 				(org-latex-export-to-latex))"
 
-clean-tex: $(TEXSRC)
-	@echo "Fixing Final TeX file cleanups"
-	@echo "Delete the redundant reference to the bibliography..."
-	@$(SED) -i '/\\addbibresource{.*\/references.bib}/d' $(TEXSRC)
-	@echo "Down-casing the ABSTRACT word..."
-	@$(SED) -i 's/\\begin{ABSTRACT}/\\begin{abstract}/g' $(TEXSRC)
-	@$(SED) -i 's/\\end{ABSTRACT}/\\end{abstract}/g' $(TEXSRC)
-
-all: $(MAIN).pdf
-
-$(MAIN).pdf: $(TEXSRC) $(BIB)
-	@echo "First init"
-	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
-
-	@echo "Running BibTeX"
-	@if [ -f $(BIB) ]; then \
-		$(BIBTEX) $(MAIN) || true; \
-	fi
-
-	@echo "Second init"
-	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
-
-	@if [ -f $(MAIN).pdf ]; then \
-		echo "Success: PDF file has been created."; \
-		rm -f $(MAIN).aux $(MAIN).log $(MAIN).bbl $(MAIN)-blx.bib \
-			  $(MAIN).blg $(MAIN).out $(MAIN).bcf $(MAIN).run.xml; \
-	fi
+clean:
+	rm -f $(MAIN).aux $(MAIN).log $(MAIN).bbl $(MAIN)-blx.bib \
+		$(MAIN).blg $(MAIN).out $(MAIN).bcf $(MAIN).run.xml
 
 cleanall: clean
 	rm -f $(MAIN).pdf
 	rm -rf $(MINTED)
 	rm -f $(MAIN).tex
-
-clean:
-	rm -f $(MAIN).aux $(MAIN).log $(MAIN).bbl $(MAIN)-blx.bib \
-		$(MAIN).blg $(MAIN).out $(MAIN).bcf $(MAIN).run.xml
