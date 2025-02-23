@@ -520,7 +520,7 @@ for the label or includes metadata. The ~#~ symbol initiates the full expansion
 of the empty formula, turning it into its complete composition. It must be placed
 before the formula begins. As shown in the Backus-Naur form below,
 
-#+begin_src Mi vizitos mian avinon ĉe ŝia domo. Ŝi mesaĝis al mi, ke ŝi ne povas marŝi.
+#+begin_src
 complex-formula ::= '(' label newline
   '[' primary-value expansion-key? decl ']'
       metadata ')'
@@ -531,7 +531,7 @@ The following formulae correspond to and demonstrate the structures from the Bac
 ***** Basic formula
 #+BEGIN_SRC lisp
 (:galileo [Galileo Galilei]
-          :occupation [philosopher])
+ :occupation [philosopher])
 (:galileo)
 => [Galileo Galilei]
 (:galileo :occupation)
@@ -567,20 +567,20 @@ The following formulae correspond to and demonstrate the structures from the Bac
 (:occupation [philosopher])
 (:galileo [Galileo Galilei
           (:occupation)]
-          :age [1005]
-          :period [reinassance])
+ :age [1005]
+ :period [reinassance])
 (:galileo)
 => [Galileo Galilei [philosopher]]
 (:galileo [Galileo Galilei #(:occupation)])
 => (:galileo [Galileo Galilei
-             (:occupation [philosopher])])
+    (:occupation [philosopher])])
 (:galileo [Galileo Galilei @(:occupation)])
 => (:galileo [Galileo Galilei [philosopher]])
 #(:galileo)
 => (:galileo [Galileo Galilei
-             (:occupation [philosopher])]
-             :age [1005]
-             :period [reinassance])
+    (:occupation [philosopher])]
+    :age [1005]
+    :period [reinassance])
 @(:galileo)
 => Galileo Galilei philosopher
 #+end_src
