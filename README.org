@@ -11,7 +11,7 @@ This repository contains the Org source files for the white paper.
 
 * Build
 ** Vix
-To generate the PDF from Org, run the following command:
+To generate the PDF from Org using the shell flake, run the following command:
 #+begin_src
 vix m
 #+end_src
@@ -21,7 +21,7 @@ vix m cleanall
 #+end_src
 
 ** Without Vix
-To build the PDF using an alternative method, execute:
+To build the PDF using an alternative method without using flake, execute:
 #+begin_src
 make
 #+end_src
