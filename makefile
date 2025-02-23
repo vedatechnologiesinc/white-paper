@@ -28,7 +28,7 @@ org-to-tex: $(ORGSRC)
 clean-tex: $(TEXSRC)
 	@echo "Fixing Final TeX file cleanups"
 	@echo "Delete the redundant reference to the bibliography..."
-	@sed -i '/\\addbibresource{.*\/references.bib}/d' $(TEXSRC)
+	@$(SED) -i '/\\addbibresource{.*\/references.bib}/d' $(TEXSRC)
 	@echo "Down-casing the ABSTRACT word..."
 	@$(SED) -i 's/\\begin{ABSTRACT}/\\begin{abstract}/g' $(TEXSRC)
 	@$(SED) -i 's/\\end{ABSTRACT}/\\end{abstract}/g' $(TEXSRC)
@@ -38,15 +38,15 @@ all: $(MAIN).pdf
 $(MAIN).pdf: $(TEXSRC) $(BIB)
 	@echo "First init"
 	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
-	
+
 	@echo "Running BibTeX"
 	@if [ -f $(BIB) ]; then \
 		$(BIBTEX) $(MAIN) || true; \
 	fi
-	
+
 	@echo "Second init"
 	$(LATEX) $(LATEXFLAGS) $(MAIN) || true
-	
+
 	@if [ -f $(MAIN).pdf ]; then \
 		echo "Success: PDF file has been created."; \
 		rm -f $(MAIN).aux $(MAIN).log $(MAIN).bbl $(MAIN)-blx.bib \
