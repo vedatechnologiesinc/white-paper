@@ -390,14 +390,10 @@ In trying to discover what should be the key qualities of a novel data structure
 that will support the kinds of capabilities that we would like to have, we have
 to answer the following questions:
 
-- How is information represented?
-- How is it structured?
-- What kinds of data can be encapsulated?
-- What kinds of operations are possible?
-- What are its key features?
-- What distinguishes it from other approaches?
-- How can it be used?
-- Are there systems that already implement it?
+How is information represented? How is it structured? What kinds of data can be
+encapsulated? What kinds of operations are possible? What are its key features?
+What distinguishes it from other approaches? How can it be used? Are there
+systems that already implement it?
 
 * Volumes
 
@@ -516,18 +512,18 @@ starts with a colon, includes a metadata name containing numbers or letters,
 and has a value that can be either alphanumeric characters or nested formulae.
 As shown in the Backus-Naur form text below,
 
-#+begin_src
+#+begin_src conf
 basic-formula ::= '(' label newline
                       primary-value newline
                       metadata? ')'
 #+end_src
 
-The reflexive formula establishes a relationship between ~Label A~ and ~Label B~
+The reflexive formula establishes a relationship between =Label A= and =Label B=
 where each label refers to the other. Both labels can hold distinct values, and
 to facilitate mutual referencing, metadata serves as the mechanism that links
 them. As shown in the Backus-Naur form  text below,
 
-#+begin_src
+#+begin_src conf
 formula1 ::= '(' label1 newline
                  primary-value1 ')'
 formula2 ::= '(' label2 newline
@@ -535,14 +531,14 @@ formula2 ::= '(' label2 newline
 formula3 ::= '(' label1 metadata label2 ')'
 #+end_src
 
-The complex formula includes a ~label~ and a ~primary value~. Within the primary
+The complex formula includes a /label/ and a /primary value/. Within the primary
 value, it can contain an empty or non-empty formula. This empty formula can be
 expanded using the symbols ~@~ or ~#~. The ~@~ symbol represents an exit string
 for the label or includes metadata. The ~#~ symbol initiates the full expansion
 of the empty formula, turning it into its complete composition. It must be placed
 before the formula begins. As shown in the Backus-Naur form below,
 
-#+begin_src
+#+begin_src conf
 complex-formula ::= '(' label newline
   '[' primary-value expansion-key? decl ']'
       metadata ')'
@@ -606,8 +602,8 @@ The following formulae correspond to and demonstrate the structures from the Bac
 => Galileo Galilei philosopher
 #+end_src
 
-Label names are not case-sensitive. Thus, =(:galileo [Galileo Galilei])= are
-equivalent to =(:GALILEO [Galileo Galilei])= and =(:gAlIleo [Galileo Galilei])=.
+Label names are not case-sensitive. Thus, ~(:galileo [Galileo Galilei])~ are
+equivalent to ~(:GALILEO [Galileo Galilei])~ and ~(:gAlIleo [Galileo Galilei])~.
 Accumulation of information happens serially across time, all changes to a
 formula are captured. This features enables arbitrary rollbacks.
 
