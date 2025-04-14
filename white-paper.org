@@ -1,10 +1,9 @@
 #+title: Principles, Approaches, and Methodologies in Designing Complex Adaptive Systems for Composite Information Mapping
-#+author: Rommel Martínez {{{email}}} @@latex:\\\medskip@@ https://ebzzry.com
+#+author: Rommel Martínez {{{email}}} @@latex:\\\medskip@@ Krei.Systems \vert{} rom@krei.systems
 #+date: October 11, 2021
-#+email: ebzzry@icloud.com
 
 #+language: en
-#+options: toc:nil
+#+options: toc:nil email:nil
 
 #+bibliography: references.bib
 #+cite_export: biblatex
