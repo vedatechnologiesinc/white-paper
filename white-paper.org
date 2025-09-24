@@ -1,6 +1,6 @@
 #+title: Principles, Approaches, and Methodologies in Designing Complex Adaptive Systems for Composite Information Mapping
-#+author: Rommel Martínez {{{email}}} @@latex:\\\medskip@@ VEDA Inc. \vert{} ebzzry@icloud.com
 #+date: October 11, 2021
+#+author: Rommel Martínez @@latex:\\\medskip@@ VEDA Technologies, Inc. \vert{} ebzzry@icloud.com
 
 #+language: en
 #+options: toc:nil email:nil
